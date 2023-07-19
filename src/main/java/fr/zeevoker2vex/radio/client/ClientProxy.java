@@ -71,7 +71,7 @@ public class ClientProxy extends CommonProxy {
     public void onClientTick(TickEvent.ClientTickEvent event) {
         if(event.phase == TickEvent.Phase.START){
             if(!GuiConfig.audioTesting){
-                if(GameSettings.isKeyDown(SPEAK_ON_RADIO) && RadioItem.isPlayerHeldActiveRadio(mc.player)){
+                if(GameSettings.isKeyDown(SPEAK_ON_RADIO) && mc.player != null && RadioItem.isPlayerHeldActiveRadio(mc.player)){
                     if(MicroManager.isRunning() && !MicroManager.getHandler().isSending()){
                         if(!speaking) NetworkHandler.getInstance().getNetwork().sendToServer(new PlayerSpeakingOnRadioPacket(true));
                         MicroManager.getHandler().start();
